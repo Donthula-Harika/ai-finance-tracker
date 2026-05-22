@@ -39,7 +39,7 @@ export const getMonthlyReport = async (req, res) => {
 
       const doc = new PDFDocument({ margin: 48 });
       doc.pipe(res);
-      doc.fontSize(22).text('FinTrack Monthly Report');
+      doc.fontSize(22).text('FinFlow Monthly Report');
       doc.moveDown(0.5).fontSize(12).text(`Period:${report.period}`);
       doc.moveDown();
       doc.fontSize(14).text(`Income:${formatCurrency(report.totalIncome)}`);
