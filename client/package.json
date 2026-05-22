@@ -8,7 +8,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "node ./node_modules/vite/bin/vite.js build",
     "preview": "vite preview",
     "lint": "eslint src --ext js,jsx"
   },
@@ -31,4 +31,5 @@
     "vite": "^5.0.2",
     "vitest": "^0.34.6"
   }
+  
 }
