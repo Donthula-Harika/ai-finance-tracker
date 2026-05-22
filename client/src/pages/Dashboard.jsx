@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 import {
   Bar,
   BarChart,
@@ -41,6 +42,7 @@ const CustomTooltip = ({ active, payload, label }) => {
 };
 
 function Dashboard() {
+  const { user } = useSelector(state => state.auth)
   const [summary, setSummary] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
@@ -86,6 +88,10 @@ function Dashboard() {
     }
   }
 
+  const currentHour = new Date().getHours()
+  const greeting = currentHour < 12 ? 'Good Morning' : currentHour < 18 ? 'Good Afternoon' : 'Good Evening'
+  const firstName = user?.name ? user.name.split(' ')[0] : 'User'
+
   return (
     <motion.div 
       className="space-y-5 md:space-y-6 pb-8"
@@ -111,7 +117,7 @@ function Dashboard() {
 
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-4 p-6 md:p-8">
           <div>
-            <h2 className="text-2xl font-display font-bold text-primary mb-2 transition-colors">Good Evening, Harika 👋</h2>
+            <h2 className="text-2xl font-display font-bold text-primary mb-2 transition-colors">{greeting}, {firstName} 👋</h2>
             <p className="text-secondary text-[14px] flex items-center gap-2 transition-colors">
               <TrendingDown size={18} className="text-ai-mid transition-colors" />
               Your spending dropped <span className="font-semibold text-ai-start transition-colors">12%</span> this month.
